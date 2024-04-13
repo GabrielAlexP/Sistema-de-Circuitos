@@ -1,4 +1,3 @@
-from Modulos import cor
 def escolha():
     """
     :return: Circuit system options menu
@@ -6,12 +5,12 @@ def escolha():
     print(45*'-=')
     print('CIRCUITOS'.center(90))
     print('-='*45)
-    print(f'Bem vindo ao programa! Primeiro vamos identificar, que elemento deseja encontrar ?{cor.cor(0)}')
+    print('Bem vindo ao programa! Primeiro vamos identificar, que elemento deseja encontrar ?')
     print()
-    print(f'{cor.cor(cor="amarelo")}[1]{cor.cor(0)} - Resistência')
-    print(f'{cor.cor(cor="amarelo")}[2]{cor.cor(0)} - Tensão')
-    print(f'{cor.cor(cor="amarelo")}[3]{cor.cor(0)} - Corrente')
-    print(f'{cor.cor(cor="amarelo")}[4]{cor.cor(0)} - Teorema da Superposição{cor.cor(0)}')
+    print('[1] - Resistência')
+    print('[2] - Tensão')
+    print('[3] - Corrente')
+    print('[4] - Teorema da Superposição')
     print('-='*45)
 
 def resistencia():
@@ -20,19 +19,19 @@ def resistencia():
     """
     while True:
         try:
-            tensao = float(input(f"Digite o valor da tensão em volts {cor.cor(cor='amarelo')}(V):{cor.cor(0)} "))
+            tensao = float(input("Digite o valor da tensão em volts (V): "))
             break
         except:
-            print(f'{cor.cor(cor="vermelho")}Insira apenas numeros na lacuna{cor.cor(0)}')
+            print('Insira apenas numeros na lacuna')
     while True:
         try:
-            corrente = float(input(f"Digite o valor da corrente em amperes {cor.cor(cor='amarelo')}(A):{cor.cor(0)} "))
+            corrente = float(input("Digite o valor da corrente em amperes (A): "))
             break
         except ValueError:
-            print(f'{cor.cor(cor="vermelho")}Insira apenas numeros na lacuna{cor.cor(0)}')
+            print('Insira apenas numeros na lacuna')
 
     resistencia = tensao / corrente
-    print("{}O valor da resistência é {:.2f} ohms (Ω){}".format(cor.cor(4), resistencia, cor.cor(0)))
+    print("O valor da resistência é {:.2f} ohms (Ω)".format(resistencia))
 
 def tensão():
     """
@@ -41,16 +40,16 @@ def tensão():
     while True:
         try:
             resist_total = 0
-            corr = float(input(f'Valor da corrente {cor.cor(cor="amarelo")}(A){cor.cor(0)} ? '))
+            corr = float(input(f'Valor da corrente (A) ? '))
             break
         except:
-            print(f'{cor.cor(cor="vermelho")}Insira apenas numeros na lacuna{cor.cor(0)}')
+            print(f'Insira apenas numeros na lacuna')
     while True:
         try:
             qnt = int(input('Quantos resistores há no circuito ? '))
             break
         except:
-            print(f'{cor.cor(cor="vermelho")}Insira apenas numeros na lacuna{cor.cor(0)}')
+            print(f'Insira apenas numeros na lacuna')
     for c in range(1, qnt + 1):
         while True:
             try:
@@ -58,9 +57,9 @@ def tensão():
                 resist_total += resist
                 break
             except:
-                print(f'{cor.cor(cor="vermelho")}Insira apenas numeros na lacuna{cor.cor(0)}')
+                print(f'Insira apenas numeros na lacuna')
     tens = corr * resist_total
-    print(f'{cor.cor(cor="azul")}O valor da Tensão é: {tens}.')
+    print(f'O valor da Tensão é: {tens}.')
 
 def corrente():
     """
@@ -69,26 +68,26 @@ def corrente():
     while True:
         try:
             resist_total = 0
-            tens = float(input(f'Valor da Tensão em Volts {cor.cor(cor="amarelo")}(V){cor.cor(0)} '))
+            tens = float(input(f'Valor da Tensão em Volts (V) '))
             break
         except ValueError:
-            print(f'{cor.cor(cor="vermelho")}Insira apenas numeros na lacuna{cor.cor(0)}')
+            print(f'Insira apenas numeros na lacuna')
     while True:
         try:
             qnt = int(input('Quantos resistores há no circuito? '))
             break
         except ValueError:
-            print(f'{cor.cor(cor="vermelho")}Insira apenas numeros na lacuna{cor.cor(0)}')
+            print(f'Insira apenas numeros na lacuna')
     for c in range(1, qnt + 1):
         while True:
             try:
-                resist = float(input(f'Valor do {c}° resistor em ohms {cor.cor(cor="amarelo")}(Ω){cor.cor(0)} '))
+                resist = float(input(f'Valor do {c}° resistor em ohms (Ω) '))
                 resist_total += resist
                 break
             except ValueError:
-                print(f'{cor.cor(cor="vermelho")}Insira apenas numeros na lacuna{cor.cor(0)}')
+                print(f'Insira apenas numeros na lacuna')
     corr = tens / resist_total
-    print(f'{cor.cor(cor="azul")}O valor da corrente é: {corr:.2f}.{cor.cor(0)}')
+    print(f'O valor da corrente é: {corr:.2f}.')
 
 def superposicao():
     """
@@ -98,33 +97,40 @@ def superposicao():
         try:
             fontes_tensao = int(input("Quantas fontes de tensão você deseja usar? "))
             break
-        except:
-            print(f'{cor.cor(cor="vermelho")}Insira apenas numeros na lacuna{cor.cor(0)}')
+        except ValueError:
+            print('Insira apenas números na lacuna')
+
     while True:
         try:
             num_resistores = int(input("Quantos resistores você deseja usar? "))
             break
-        except:
-            print(f'{cor.cor(cor="vermelho")}Insira apenas numeros na lacuna{cor.cor(0)}')
+        except ValueError:
+            print('Insira apenas números na lacuna')
+
     fontes = []
     resistores = []
+
     for i in range(fontes_tensao):
         while True:
             try:
-                voltagem = float(input("Digite o valor da fonte de tensão em Volts {}(V){} {}: ".format(cor.cor(3), cor.cor(0), i + 1)))
+                voltagem = float(input(f"Digite o valor da fonte de tensão em Volts {i + 1} (V): "))
                 break
-            except:
-                print(f'{cor.cor(cor="vermelho")}Insira apenas numeros na lacuna{cor.cor(0)}')
+            except ValueError:
+                print('Insira apenas números na lacuna')
         fontes.append(voltagem)
+
     for i in range(num_resistores):
         while True:
             try:
-                resistencia = float(input("Digite o valor da resistência em ohms {}(Ω){} {}: ".format(cor.cor(3), cor.cor(0), i + 1)))
+                resistencia = float(input(f"Digite o valor da resistência em ohms {i + 1} (Ω): "))
                 break
-            except:
-                print(f'{cor.cor(cor="vermelho")}Insira apenas numeros na lacuna{cor.cor(0)}')
+            except ValueError:
+                print('Insira apenas números na lacuna')
         resistores.append(resistencia)
+
     Req = sum(resistores)
+    total_corr = 0
+
     for i in range(num_resistores):
         correntes = []
         for j in range(fontes_tensao):
@@ -133,8 +139,10 @@ def superposicao():
             voltagem_queda = fonte_ativa[j] * resistores[i] / Req
             corr = voltagem_queda / resistores[i]
             correntes.append(corr)
-        total_corr = sum(correntes)
-    print("{}A corrente total no resistor é {} A{}".format(cor.cor(4), total_corr, cor.cor(0)))
+        total_corr += sum(correntes)
+
+    print(f"A corrente total no resistor é {total_corr} A")
+
 
 def perg():
     """
@@ -147,7 +155,7 @@ def perg():
             print('-='*45)
             break
         except:
-            print(f'{cor.cor(cor="vermelho")}Por favor, insira somente numeros inteiros.{cor.cor(0)}')
+            print(f'Por favor, insira somente numeros inteiros.')
             print('-='*45)
     while True:
         if perg == 1:
@@ -168,3 +176,5 @@ def perg():
             break
         else:
             print('Por favor, insira um número válido')
+
+perg()
